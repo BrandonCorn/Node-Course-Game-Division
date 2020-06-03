@@ -85,7 +85,7 @@ app.get('/games/:id', auth, (req,res) => {
     let addReview = req.user ? true : false; 
 
     Article.findById(req.params.id, (err,article) => {
-        if (err) res.status(400).send(err); 
+        if (err) return res.status(400).send(err); 
 
         UserReview.find({'postId': req.params.id}).exec( (err,userReviews) => {
             res.render('article', {
